@@ -15,9 +15,9 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-slate-900 text-slate-100 pb-16">
 
-            <div className="bg-gradient-to-r from-blue-900/40 via-slate-900 to-slate-900 border-b border-slate-800 py-16 px-6">
+            <div className="bg--blue-900/40 via-slate-900 to-slate-900 border-b border-slate-800 py-16 px-6">
                 <div className="max-w-7xl mx-auto text-center md:text-left">
-                    <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Next-Gen Shopping</span>
+                    <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Welcome TO Next-Gen Shopping</span>
                     <h1 className="text-4xl md:text-5xl font-extrabold text-white mt-2 mb-4 leading-tight">
                         Discover Exceptional Tech & Essentials
                     </h1>
@@ -49,12 +49,13 @@ export default function Home() {
 
 
                     <div className="w-full md:w-72">
+                       // Change search bar input inside Home.jsx:
                         <input
                             type="text"
-                            placeholder="Search catalog..."
+                            placeholder="search Category"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                            className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-700"
                         />
                     </div>
                 </div>
