@@ -28,21 +28,21 @@ export default function Register() {
                                 type="button"
                                 onClick={() => setFormData({ ...formData, role: 'buyer' })}
                                 className={`py-2 text-sm font-semibold rounded-lg border transition-all ${formData.role === 'buyer'
-                                        ? 'bg-blue-900 border-blue-600 text-white shadow-md'
-                                        : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'
+                                    ? 'bg-blue-900 border-blue-600 text-white shadow-md'
+                                    : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'
                                     }`}
                             >
-                                🛒 Buyer
+                                Buyer
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setFormData({ ...formData, role: 'seller' })}
                                 className={`py-2 text-sm font-semibold rounded-lg border transition-all ${formData.role === 'seller'
-                                        ? 'bg-blue-900 border-blue-600 text-white shadow-md'
-                                        : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'
+                                    ? 'bg-blue-900 border-blue-600 text-white shadow-md'
+                                    : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-white'
                                     }`}
                             >
-                                🏪 Seller
+                                Seller
                             </button>
                         </div>
                     </div>

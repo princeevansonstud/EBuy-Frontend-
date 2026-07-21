@@ -49,7 +49,7 @@ export default function Home() {
 
 
                     <div className="w-full md:w-72">
-                       // Change search bar input inside Home.jsx:
+
                         <input
                             type="text"
                             placeholder="search Category"

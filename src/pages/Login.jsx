@@ -21,7 +21,9 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 text-white">
       <div className="bg-slate-800 p-8 rounded-xl border border-slate-700 w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Welcome Back!</h2>
         <h2 className="text-2xl font-bold text-blue-500 mb-6 text-center">Login</h2>
+
         {error && <div className="text-red-400 text-sm mb-4">{error}</div>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
