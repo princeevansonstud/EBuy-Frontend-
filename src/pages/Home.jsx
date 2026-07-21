@@ -15,7 +15,6 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-slate-900 text-slate-100 pb-16">
 
-            {/* Hero Banner */}
             <div className="bg-gradient-to-r from-blue-900/40 via-slate-900 to-slate-900 border-b border-slate-800 py-16 px-6">
                 <div className="max-w-7xl mx-auto text-center md:text-left">
                     <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Next-Gen Shopping</span>
@@ -28,21 +27,19 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Catalog Container */}
             <div className="max-w-7xl mx-auto px-6 mt-10">
 
-                {/* Controls: Search and Categories */}
+
                 <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
 
-                    {/* Category Tabs */}
                     <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
                         {CATEGORIES.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${selectedCategory === cat
-                                        ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                                        : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700/50'
+                                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
+                                    : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700/50'
                                     }`}
                             >
                                 {cat}
@@ -50,7 +47,7 @@ export default function Home() {
                         ))}
                     </div>
 
-                    {/* Search Bar */}
+
                     <div className="w-full md:w-72">
                         <input
                             type="text"
@@ -62,7 +59,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* Product Grid */}
+
                 {filteredProducts.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredProducts.map((product) => (
