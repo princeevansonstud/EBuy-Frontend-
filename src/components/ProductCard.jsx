@@ -2,7 +2,7 @@ export default function ProductCard({ product }) {
     return (
         <div className="bg-slate-800 border border-slate-700/60 rounded-xl overflow-hidden hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col group">
 
-            {/* Image Container */}
+            
             <div className="relative aspect-square overflow-hidden bg-slate-900">
                 <img
                     src={product.image}
@@ -14,12 +14,12 @@ export default function ProductCard({ product }) {
                 </span>
             </div>
 
-            {/* Details Container */}
+          
             <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
                     <div className="flex items-center justify-between mb-2">
                         <span className="text-yellow-400 text-xs font-semibold flex items-center gap-1">
-                            ⭐ {product.rating}
+                            {product.rating}
                         </span>
                         <span className="text-lg font-bold text-white">${product.price.toFixed(2)}</span>
                     </div>
