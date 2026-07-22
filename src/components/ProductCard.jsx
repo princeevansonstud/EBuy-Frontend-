@@ -1,4 +1,14 @@
+import { useCart } from '../context/CartContext';
+
 export default function ProductCard({ product }) {
+    const { addToCart } = useCart();
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation(); // Prevents any parent click events
+        console.log('Adding to cart:', product); // Debug log
+        addToCart(product);
+    };
+
     return (
         <div className="bg-slate-800 border border-slate-700/60 rounded-xl overflow-hidden hover:border-blue-700 hover:shadow-xl hover:shadow-blue-900/20 transition-all duration-300 flex flex-col group">
 
@@ -21,7 +31,9 @@ export default function ProductCard({ product }) {
                         <span className="text-yellow-400 text-xs font-semibold flex items-center gap-1">
                             ⭐ {product.rating}
                         </span>
-                        <span className="text-base font-bold text-white">KES {product.price.toLocaleString()}</span>
+                        <span className="text-base font-bold text-white">
+                            KES {product?.price ? product.price.toLocaleString() : '0'}
+                        </span>
                     </div>
 
                     <h3 className="text-base font-semibold text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-1">
@@ -33,7 +45,12 @@ export default function ProductCard({ product }) {
                     </p>
                 </div>
 
-                <button className="mt-5 w-full bg-blue-900 hover:bg-blue-800 active:scale-[0.98] text-white text-sm font-medium py-2.5 rounded-lg border border-blue-700/60 transition-all shadow-md shadow-blue-950/40">
+                {/* Add to Cart Button */}
+                <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="mt-5 w-full bg-blue-900 hover:bg-blue-800 active:scale-[0.98] text-white text-sm font-medium py-2.5 rounded-lg border border-blue-700/60 transition-all shadow-md shadow-blue-950/40 cursor-pointer z-10"
+                >
                     Add to Cart
                 </button>
             </div>

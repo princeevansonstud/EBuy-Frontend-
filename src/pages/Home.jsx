@@ -15,9 +15,9 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-slate-900 text-slate-100 pb-16">
 
-            <div className="bg--blue-900/40 via-slate-900 to-slate-900 border-b border-slate-800 py-16 px-6">
+            <div className="bg-blue-950 via-slate-900 to-slate-900 border-b border-slate-800 py-16 px-6">
                 <div className="max-w-7xl mx-auto text-center md:text-left">
-                    <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Welcome TO Next-Gen Shopping</span>
+                    <span className="text-blue-400 font-semibold text-sm uppercase tracking-wider">Welcome To Next-Gen Shopping</span>
                     <h1 className="text-4xl md:text-5xl font-extrabold text-white mt-2 mb-4 leading-tight">
                         Discover Exceptional Tech & Essentials
                     </h1>
@@ -27,10 +27,12 @@ export default function Home() {
                 </div>
             </div>
 
+
             <div className="max-w-7xl mx-auto px-6 mt-10">
 
 
                 <div className="flex flex-col md:flex-row gap-4 items-center justify-between mb-8">
+
 
                     <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
                         {CATEGORIES.map((cat) => (
@@ -38,7 +40,7 @@ export default function Home() {
                                 key={cat}
                                 onClick={() => setSelectedCategory(cat)}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${selectedCategory === cat
-                                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
+                                    ? 'bg-blue-900 text-white border border-blue-700 shadow-md'
                                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white border border-slate-700/50'
                                     }`}
                             >
@@ -49,7 +51,6 @@ export default function Home() {
 
 
                     <div className="w-full md:w-72">
-
                         <input
                             type="text"
                             placeholder="search Category"
