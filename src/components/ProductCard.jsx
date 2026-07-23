@@ -1,55 +1,36 @@
-import { useCart } from '../context/CartContext';
+export default function ProductCard({ product, onAddToCart }) {
+    if (!product) return null;
 
-export default function ProductCard({ product }) {
-    const { addToCart } = useCart();
-
-    const handleAddToCart = (e) => {
-        e.stopPropagation(); // Prevents any parent click events
-        console.log('Adding to cart:', product); // Debug log
-        addToCart(product);
-    };
+    const fallbackImage =
+        'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80';
 
     return (
-        <div className="bg-slate-800 border border-slate-700/60 rounded-xl overflow-hidden hover:border-blue-700 hover:shadow-xl hover:shadow-blue-900/20 transition-all duration-300 flex flex-col group">
-
-            {/* Image Container */}
-            <div className="relative aspect-square overflow-hidden bg-slate-900">
+        <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 flex flex-col justify-between hover:border-blue-500/50 transition">
+            <div>
                 <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src={product.image_url || product.image || fallbackImage}
+                    alt={product.name || 'Product'}
+                    className="w-full h-48 object-cover rounded-lg mb-4 bg-slate-900"
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = fallbackImage;
+                    }}
                 />
-                <span className="absolute top-3 left-3 bg-slate-900/90 backdrop-blur-md border border-slate-700 text-blue-400 text-xs px-2.5 py-1 rounded-full font-medium">
-                    {product.category}
-                </span>
+                <h3 className="text-lg font-bold text-white mb-1">
+                    {product.name || 'Unnamed Product'}
+                </h3>
+                <p className="text-slate-400 text-sm line-clamp-2 mb-4">
+                    {product.description || 'No description available.'}
+                </p>
             </div>
 
-            {/* Details Container */}
-            <div className="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-yellow-400 text-xs font-semibold flex items-center gap-1">
-                            ⭐ {product.rating}
-                        </span>
-                        <span className="text-base font-bold text-white">
-                            KES {product?.price ? product.price.toLocaleString() : '0'}
-                        </span>
-                    </div>
-
-                    <h3 className="text-base font-semibold text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-1">
-                        {product.name}
-                    </h3>
-
-                    <p className="text-xs text-slate-400 mt-2 line-clamp-2 leading-relaxed">
-                        {product.description}
-                    </p>
-                </div>
-
-                {/* Add to Cart Button */}
+            <div className="flex items-center justify-between mt-auto pt-2 border-t border-slate-700/50">
+                <span className="text-xl font-extrabold text-blue-400">
+                    ${product.price || '0.00'}
+                </span>
                 <button
-                    type="button"
-                    onClick={handleAddToCart}
-                    className="mt-5 w-full bg-blue-900 hover:bg-blue-800 active:scale-[0.98] text-white text-sm font-medium py-2.5 rounded-lg border border-blue-700/60 transition-all shadow-md shadow-blue-950/40 cursor-pointer z-10"
+                    onClick={() => onAddToCart && onAddToCart(product)}
+                    className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition active:scale-95"
                 >
                     Add to Cart
                 </button>
