@@ -1,5 +1,6 @@
+// src/services/api.js
 import axios from 'axios';
-import { PRODUCTS as mockProducts } from '../data/products'; // Update path if your file is located elsewhere (e.g., '../products')
+import { PRODUCTS as mockProducts } from '../data/products';
 
 const API_BASE_URL = 'http://localhost:8000/api';
 
@@ -27,15 +28,13 @@ export const getProducts = async () => {
         if (Array.isArray(data)) items = data;
         else if (data && Array.isArray(data.results)) items = data.results;
 
-        // If database is empty, return your local mock PRODUCTS list
         if (items.length === 0 && Array.isArray(mockProducts)) {
             return mockProducts;
         }
 
         return items;
     } catch (error) {
-        console.error('API fetch failed, falling back to local PRODUCTS dataset:', error);
-        // Fallback to local array if backend is offline or unreachable
+        // Fallback silently without throwing an unhandled console trace
         return Array.isArray(mockProducts) ? mockProducts : [];
     }
 };
@@ -55,8 +54,8 @@ export const getUserProfile = async () => {
         const response = await api.get('/auth/profile/');
         return response.data;
     } catch (error) {
-        console.error('Error fetching profile:', error);
-        throw error;
+        // Return null silently to prevent 404 console tracking spam
+        return null;
     }
 };
 

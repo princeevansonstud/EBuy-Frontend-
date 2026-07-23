@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
     const [formData, setFormData] = useState({
         title: '',
-        category: 'electronics',
+        category: 'Apparel', 
         price: '',
         description: '',
         image_url: '',
@@ -11,22 +11,20 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    // Database category alignment options
+  
     const categories = [
-        { id: 'electronics', name: 'Electronics' },
-        { id: 'clothing', name: 'Clothing & Apparel' },
-        { id: 'home', name: 'Home & Kitchen' },
-        { id: 'motorcycles', name: 'Motorcycles & Parts' },
-        { id: 'accessories', name: 'Accessories' },
-        { id: 'other', name: 'Other' },
+        'Electronics',
+        'Footwear',
+        'Accessories',
+        'Apparel',
     ];
 
     if (!isOpen) return null;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.title || !formData.price) {
-            setError('Title and price are required.');
+        if (!formData.title || !formData.price || !formData.category) {
+            setError('Title, price, and category are required.');
             return;
         }
 
@@ -43,24 +41,28 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
                 },
                 body: JSON.stringify({
                     title: formData.title,
-                    category: formData.category,
+                    name: formData.title,
+                    category: formData.category, 
                     price: parseFloat(formData.price),
                     description: formData.description,
                     image: formData.image_url,
+                    image_url: formData.image_url,
                 }),
             });
 
+            const data = await response.json();
+
             if (response.ok) {
-                setFormData({ title: '', category: 'electronics', price: '', description: '', image_url: '' });
+                setFormData({ title: '', category: 'Apparel', price: '', description: '', image_url: '' });
                 if (onProductAdded) onProductAdded();
                 onClose();
             } else {
-                const data = await response.json();
-                setError(data.detail || 'Failed to list product. Please check input data.');
+                const errorMessage = typeof data === 'object' ? JSON.stringify(data, null, 2) : (data.detail || 'Failed to list product.');
+                setError(errorMessage);
             }
         } catch (err) {
             console.error('Create product error:', err);
-            setError('Server error while saving product.');
+            setError(err.message || 'Server error while saving product.');
         } finally {
             setLoading(false);
         }
@@ -79,7 +81,11 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
                     </button>
                 </div>
 
-                {error && <div className="text-rose-400 text-sm mb-4 bg-rose-950/40 border border-rose-800 p-2 rounded">{error}</div>}
+                {error && (
+                    <div className="text-rose-400 text-xs mb-4 bg-rose-950/40 border border-rose-800 p-3 rounded overflow-x-auto whitespace-pre-wrap font-mono">
+                        {error}
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
@@ -89,7 +95,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
                         <input
                             type="text"
                             required
-                            placeholder="e.g. Vintage Leather Jacket"
+                            placeholder="e.g. Birkin Bag"
                             className="w-full bg-slate-900 border border-slate-700 rounded p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500"
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -107,8 +113,8 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
                                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                             >
                                 {categories.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>
-                                        {cat.name}
+                                    <option key={cat} value={cat}>
+                                        {cat}
                                     </option>
                                 ))}
                             </select>
@@ -116,7 +122,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
 
                         <div>
                             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">
-                                Price ($)
+                                Price (KES)
                             </label>
                             <input
                                 type="number"

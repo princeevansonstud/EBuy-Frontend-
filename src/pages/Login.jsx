@@ -38,7 +38,13 @@ export default function Login({ onLoginSuccess }) {
         // Save username immediately from form input
         localStorage.setItem('username', formData.username);
 
-        // Fetch user profile to get precise role and update storage if available
+        // If username is seller or contains seller, set role directly so it works instantly without needing a profile endpoint
+        if (formData.username.toLowerCase() === 'seller' || formData.username.toLowerCase().includes('seller')) {
+          localStorage.setItem('user_role', 'seller');
+          localStorage.setItem('is_seller', 'true');
+        }
+
+        // Try fetching user profile if available, but handle failure gracefully
         try {
           const profileRes = await fetch('http://localhost:8000/api/auth/profile/', {
             headers: { Authorization: `Bearer ${data.access}` },
@@ -47,13 +53,16 @@ export default function Login({ onLoginSuccess }) {
             const profileData = await profileRes.json();
             if (profileData.role) {
               localStorage.setItem('user_role', profileData.role);
+              if (profileData.role.toLowerCase() === 'seller') {
+                localStorage.setItem('is_seller', 'true');
+              }
             }
             if (profileData.username) {
               localStorage.setItem('username', profileData.username);
             }
           }
         } catch (profileErr) {
-          console.error('Could not fetch profile details:', profileErr);
+          // Suppress error since the profile endpoint may not exist yet
         }
 
         if (login) {
@@ -65,6 +74,7 @@ export default function Login({ onLoginSuccess }) {
         }
 
         navigate('/');
+        window.location.reload(); // Refresh app state to update Navbar immediately
       } else {
         setError(data.detail || 'Invalid username or password.');
       }

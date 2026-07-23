@@ -1,8 +1,8 @@
+// src/components/Navbar.jsx
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function Navbar({ isAuthenticated, userRole, cartCount, onLogout, currentUser, onOpenAddProduct }) {
     const navigate = useNavigate();
-
 
     const storedUsername = localStorage.getItem('username') || localStorage.getItem('user_id');
     const displayUser = currentUser?.username || currentUser?.id || currentUser?.email || storedUsername || 'Account';
@@ -43,7 +43,6 @@ export default function Navbar({ isAuthenticated, userRole, cartCount, onLogout,
                             </>
                         )}
 
-
                         <Link to="/cart" className="text-sm font-medium hover:text-blue-400 transition relative">
                             Cart
                             {cartCount > 0 && (
@@ -52,7 +51,6 @@ export default function Navbar({ isAuthenticated, userRole, cartCount, onLogout,
                                 </span>
                             )}
                         </Link>
-
 
                         {isAuthenticated ? (
                             <div className="flex items-center space-x-4 border-l border-slate-700 pl-4">
