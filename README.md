@@ -23,12 +23,12 @@
 * Fully version-controlled via Git and GitHub with automated CI/CD testing workflows.
 
   ## Features
-  **Product Catalog:** Browse through a dynamic list of items with search and filtering capabilities.
- **Shopping Cart:** Add items, adjust quantities, update total costs dynamically, and manage your cart locally or through state management.
- **User Authentication:** Secure login and registration pages backed by JWT token handling.
- **Checkout System:** Fully integrated checkout form that processes shipping information, calculates order summaries, and posts orders directly to the backend API.
- **Seller Dashboard:** Add new products through an interactive modal and manage seller listings.
- **Responsive UI:** Clean, dark-mode-styled user interface built with Tailwind CSS.
+  **Product Catalog: Browse through a dynamic list of items with search and filtering capabilities.
+ **Shopping Cart: Add items, adjust quantities, update total costs dynamically, and manage your cart locally or through state management.
+ **User Authentication:  Secure login and registration pages backed by JWT token handling.
+ **Checkout System: Fully integrated checkout form that processes shipping information, calculates order summaries, and posts orders directly to the backend API.
+ **Seller Dashboard: Add new products through an interactive modal and manage seller listings.
+ **Responsive UI: Clean, dark-mode-styled user interface built with Tailwind CSS.
 
 
 ## Conclusion:
