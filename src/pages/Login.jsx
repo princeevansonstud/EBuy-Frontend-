@@ -20,7 +20,7 @@ export default function Login({ onLoginSuccess }) {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/token/', {
+      const response = await fetch('[https://ebuy-backend.onrender.com](https://ebuy-backend.onrender.com)/api/token/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -46,7 +46,7 @@ export default function Login({ onLoginSuccess }) {
 
         // Try fetching user profile if available, but handle failure gracefully
         try {
-          const profileRes = await fetch('http://localhost:8000/api/auth/profile/', {
+          const profileRes = await fetch('[https://ebuy-backend.onrender.com](https://ebuy-backend.onrender.com)/api/auth/profile/', {
             headers: { Authorization: `Bearer ${data.access}` },
           });
           if (profileRes.ok) {

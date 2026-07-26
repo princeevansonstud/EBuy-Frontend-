@@ -3,7 +3,7 @@ import { useState } from 'react';
 export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
     const [formData, setFormData] = useState({
         title: '',
-        category: 'Apparel', 
+        category: 'Apparel',
         price: '',
         description: '',
         image_url: '',
@@ -11,7 +11,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-  
+
     const categories = [
         'Electronics',
         'Footwear',
@@ -33,7 +33,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
 
         try {
             const token = localStorage.getItem('access') || localStorage.getItem('accessToken');
-            const response = await fetch('http://localhost:8000/api/products/', {
+            const response = await fetch('[https://ebuy-backend.onrender.com](https://ebuy-backend.onrender.com)/api/products/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
                 body: JSON.stringify({
                     title: formData.title,
                     name: formData.title,
-                    category: formData.category, 
+                    category: formData.category,
                     price: parseFloat(formData.price),
                     description: formData.description,
                     image: formData.image_url,
