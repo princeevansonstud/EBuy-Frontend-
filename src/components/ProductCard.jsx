@@ -10,7 +10,7 @@ export default function ProductCard({ product, onAddToCart }) {
         if (!img) return FALLBACK_IMAGE;
         if (img.startsWith('http') || img.startsWith('data:')) return img;
         // Fallback for backend-relative media paths if applicable
-        return `[https://ebuy-backend.onrender.com](https://ebuy-backend.onrender.com)${img}`;
+        return `https://ebuy-backend.onrender.com${img}`;
     };
 
     return (

@@ -12,7 +12,7 @@ export default function SellerDashboard() {
         try {
             setLoading(true);
             const token = localStorage.getItem('access') || localStorage.getItem('accessToken');
-            const response = await fetch('[https://ebuy-backend.onrender.com](https://ebuy-backend.onrender.com)/api/products/?seller=true', {
+            const response = await fetch('https://ebuy-backend.onrender.com/api/products/?seller=true', {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -34,7 +34,7 @@ export default function SellerDashboard() {
         const img = product.image || product.image_url;
         if (!img) return FALLBACK_IMAGE;
         if (img.startsWith('http') || img.startsWith('data:')) return img;
-        return `[https://ebuy-backend.onrender.com](https://ebuy-backend.onrender.com)${img}`;
+        return `https://ebuy-backend.onrender.com${img}`;
     };
 
     return (
