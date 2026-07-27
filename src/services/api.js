@@ -4,6 +4,7 @@ import { PRODUCTS as mockProducts } from '../data/products';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://ebuy-backend-latest.onrender.com/api';
 
+// Main instance WITH auth for protected actions (Seller dashboard, profile, orders)
 const api = axios.create({
     baseURL: API_BASE_URL,
 });
@@ -19,9 +20,15 @@ api.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
+// Separate public instance WITHOUT auth headers for global data like the product catalog
+const publicApi = axios.create({
+    baseURL: API_BASE_URL,
+});
+
 export const getProducts = async () => {
     try {
-        const response = await api.get('/products/');
+        // Use publicApi instead of api so it never sends user tokens
+        const response = await publicApi.get('/products/');
         const data = response.data;
         let items = [];
 
@@ -34,7 +41,6 @@ export const getProducts = async () => {
 
         return items;
     } catch (error) {
-        // Fallback silently without throwing an unhandled console trace
         return Array.isArray(mockProducts) ? mockProducts : [];
     }
 };
@@ -51,10 +57,9 @@ export const createProduct = async (productData) => {
 
 export const getUserProfile = async () => {
     try {
-        const response = await api.get('/auth/profile/');
+        const response = await api.get('/profile/');
         return response.data;
     } catch (error) {
-        // Return null silently to prevent 404 console tracking spam
         return null;
     }
 };
