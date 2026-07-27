@@ -3,13 +3,13 @@
 const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='16px'%3ENo Image Available%3C/text%3E%3C/svg%3E";
 
 export default function ProductCard({ product, onAddToCart }) {
-    // Determine correct image source across different payload keys
+
     const rawImage = product.image || product.image_url;
 
     const getImageUrl = (img) => {
         if (!img) return FALLBACK_IMAGE;
         if (img.startsWith('http') || img.startsWith('data:')) return img;
-        // Fallback for backend-relative media paths if applicable
+
         return `https://ebuy-backend-latest.onrender.com${img}`;
     };
 

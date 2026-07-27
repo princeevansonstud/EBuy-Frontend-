@@ -12,7 +12,7 @@ const ProductCatalog = () => {
             setLoading(true);
             setError(null);
             const data = await getProducts({ search: query });
-            
+
             setProducts(data.results ? data.results : data);
         } catch (err) {
             setError('Unable to fetch products from server.');
@@ -103,7 +103,7 @@ const ProductCatalog = () => {
                             </div>
                             <div>
                                 <p style={{ fontSize: '16px', fontWeight: 'bold', margin: '0 0 12px 0' }}>
-                                    ${product.price}
+                                    KES {product.price}
                                 </p>
                                 <button
                                     style={{
