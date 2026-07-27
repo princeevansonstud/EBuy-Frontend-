@@ -39,7 +39,7 @@ export default function Checkout({ cartItems, setCartItems }) {
         };
 
         try {
-            const response = await fetch('https://ebuy-backend.onrender.com/api/orders/', {
+            const response = await fetch('https://ebuy-backend-latest.onrender.com/api/orders/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

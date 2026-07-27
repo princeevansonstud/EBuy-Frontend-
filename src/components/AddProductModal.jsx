@@ -33,7 +33,7 @@ export default function AddProductModal({ isOpen, onClose, onProductAdded }) {
 
         try {
             const token = localStorage.getItem('access') || localStorage.getItem('accessToken');
-            const response = await fetch('https://ebuy-backend.onrender.com/api/products/', {
+            const response = await fetch('https://ebuy-backend-latest.onrender.com/api/products/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

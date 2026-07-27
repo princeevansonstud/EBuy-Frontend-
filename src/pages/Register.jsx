@@ -28,7 +28,7 @@ export default function Register({ onRegisterSuccess }) {
         setLoading(true);
 
         try {
-            const response = await fetch('https://ebuy-backend.onrender.com/api/register/', {
+            const response = await fetch('https://ebuy-backend-latest.onrender.com/api/register/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

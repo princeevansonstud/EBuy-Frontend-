@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { PRODUCTS as mockProducts } from '../data/products';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://ebuy-backend.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://ebuy-backend-latest.onrender.com/api';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
